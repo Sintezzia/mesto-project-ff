@@ -23,4 +23,4 @@ function delCard(event) {
   event.target.closest('.places__item').remove();
 }
 // @todo: Вывести карточки на страницу
-initialCards.forEach((item) => PlacesList.appendChild(createCard(item.name, item.link, delCard)));
+initialCards.forEach((item) => placesList.appendChild(createCard(item.name, item.link, delCard)));
