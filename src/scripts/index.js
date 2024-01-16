@@ -54,7 +54,7 @@ function handleFormSubmit(evt) {
   nameOutputElement.textContent = nameValue;
   jobOutputElement.textContent = jobValue;
 
-  formEditProfile.reset()
+  formEditProfile.reset();
 
   closeModal('.popup_type_edit');
 }

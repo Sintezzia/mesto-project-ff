@@ -1,3 +1,5 @@
+import { formEditProfile } from '../index.js';
+
 // Создание функций обработчиков с помощью замыканий
 function createClosePopupHandler(popupSelector) {
   return function() {
@@ -43,6 +45,11 @@ function openModal(popupSelector) {
 // Функция для закрытия модального окна
 function closeModal(popupSelector) {
   const modal = document.querySelector(popupSelector);
+  const form = modal.querySelector('.popup__form');
+
+  if (form) {
+    form.reset();
+  }
 
   // Удаление обработчиков событий
   const { handleClosePopupClick, handleEscKeyPress, handleOverlayClick } = modal.closeEventListeners;
