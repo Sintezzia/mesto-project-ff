@@ -1,30 +1,24 @@
 import { cardTemplate } from '../index.js';
 // Функция создания карточки
-function createCard(name, link, delCard, likeHandler, ImageHandler) {
+function createCard(name, link, delCard, likeHandler, imageHandler) {
     const card = cardTemplate.querySelector('.card').cloneNode(true);
     const deleteButton = card.querySelector('.card__delete-button');
     const cardImage = card.querySelector('.card__image');
     const cardTitle = card.querySelector('.card__title');
+    const likeButton = card.querySelector('.card__like-button');
 
     cardImage.src = link;
     cardImage.alt = name;
     cardTitle.textContent = name;
 
     // обработчик для открытия изображения
-    cardImage.addEventListener('click', () => ImageHandler(link, name));
+    cardImage.addEventListener('click', () => imageHandler(link, name));
 
     // обработчик удаления карточки
     deleteButton.addEventListener('click', (evt) => delCard(evt));
 
     // обработчик лайка карточки
-    card.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('card__like-button')) {
-            evt.target.classList.toggle('card__like-button_is-active');
-            if (likeHandler) {
-                likeHandler(evt);
-            }
-        }
-    });
+    likeButton.addEventListener('click', (evt) => likeHandler(evt));
 
     return card;
 }
@@ -37,14 +31,13 @@ function delCard(evt) {
 // функция обработчка лайка карточки
 function cardLike(evt) {
     const likeButton = evt.target;
+    likeButton.classList.toggle('card__like-button_is-active');
     const isLiked = likeButton.classList.contains('card__like-button_is-active');
 
-    // вывод в консоль сообщения собыития лайка
-    if (isLiked) {
-        console.log('Card liked', evt);
-    } else {
-        console.log('Card unliked', evt);
-    }
+    // вывод в консоль сообщения события лайка
+    console.log(isLiked ? 'Card liked' : 'Card unliked', evt);
 }
+
+
 
 export { cardLike, delCard, createCard };
