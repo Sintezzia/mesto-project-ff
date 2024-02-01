@@ -1,10 +1,8 @@
-import { cardTemplate } from '../index.js';
-import { cardLikeRequest, deleteCardRequest } from "./api";
-import { popupTypeConfirmDelete } from "../index.js";
-import { closeModal, openModal } from "./modal";
+// Тэмплейт карточки
+const cardTemplate = document.querySelector('#card-template').content;
 
 // Функция создания карточки
-export const createCard = (name, link, likes, cardId, cardOwnerId, userId, delCard, likeHandler, imageHandler) => {
+export const createCard = (name, link, likes, cardId, cardOwnerId, userId, handleDeleteCard, handleLikeCard, imageHandler) => {
     const card = cardTemplate.querySelector('.card').cloneNode(true);
     const deleteButton = card.querySelector('.card__delete-button');
     const cardImage = card.querySelector('.card__image');
@@ -31,32 +29,10 @@ export const createCard = (name, link, likes, cardId, cardOwnerId, userId, delCa
     cardImage.addEventListener('click', () => imageHandler(link, name));
 
     // обработчик удаления карточки
-    deleteButton.addEventListener('click', () => {
-        openModal(popupTypeConfirmDelete);
-        const confirmButton = document.querySelector('.popup__button_confirm-delete');
-        confirmButton.onclick = () => {
-            deleteCardRequest(cardId)
-                .then(() => {
-                    delCard(card);
-                    closeModal(popupTypeConfirmDelete);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        };
-    });
+    deleteButton.addEventListener('click', () => handleDeleteCard(cardId, card));
 
     // обработчик лайка карточки
-    likeButton.addEventListener('click', (evt) => {
-        const method = likeButton.classList.contains('card__like-button_is-active') ? 'DELETE' : 'PUT';
-        cardLikeRequest(cardId, method)
-            .then((result) => {
-                cardLike(evt, result.likes.length, likeButton);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    });
+    likeButton.addEventListener('click', (evt) => handleLikeCard(evt, cardId, likeButton));
 
     return card;
 }
