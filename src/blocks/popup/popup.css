@@ -4,6 +4,7 @@
 @import url('./__title/popup__title.css');
 @import url('./__form/popup__form.css');
 @import url('./__input/popup__input.css');
+@import url('./__input/_error/input__error.css');
 @import url('./__button/popup__button.css');
 @import url('./__caption/popup__caption.css');
 @import url('./__image/popup__image.css');
@@ -20,4 +21,46 @@
   bottom: 0;
   right: 0;
   z-index: 10;
+}
+
+.preloader {
+  background-color: #313131;
+  opacity: 0.5;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.cards-preloader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-preloader {
+  flex: 0 0 calc(33.33% - 20px);
+  max-width: 282px;
+  height: 367px;
+  background-color: #313131;
+  border-radius: 10px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@media (max-width: 922px) {
+  .card-preloader {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 622px) {
+  .card-preloader {
+    flex: 0 0 100%;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

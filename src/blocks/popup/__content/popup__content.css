@@ -1,12 +1,25 @@
 .popup__content {
   max-width: 430px;
   width: 100%;
-  min-height: 330px;
   background-color: #fff;
   border-radius: 10px;
   position: relative;
   box-sizing: border-box;
   padding: 34px 36px;
+}
+
+.popup__error {
+  background-color: #ff3d3d;
+  padding: 5px;
+  border-radius: 10px;
+  word-break: break-all;
+  color: #000;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: block;
+  margin-block-start: 20px;
 }
 
 @media screen and (max-width: 568px) {

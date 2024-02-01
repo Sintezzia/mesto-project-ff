@@ -1,0 +1,29 @@
+.avatar__edit-button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar__edit-button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url('../../../images/edit-icon.svg') center no-repeat;
+    background-size: 25%;
+    opacity: 0; /* Изначально иконка полностью прозрачна */
+    transition: opacity 0.3s ease; /* Плавность изменения прозрачности */
+}
+
+.avatar__edit-button:hover::after {
+    opacity: 1;/* При наведении иконка становится полностью видимой */
+}
