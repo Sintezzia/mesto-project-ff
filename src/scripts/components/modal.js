@@ -1,11 +1,6 @@
-import {clearValidation} from "./validation";
-import { validationConfig } from "../index";
-
 // Функция для открытия модального окна
 export const openModal = (modal) => {
   modal.classList.add('popup_is-opened');
-
-  openPopup(modal);
 
   // Сохранение ссылок на обработчики событий
   const handleClosePopupClick = createClosePopupHandler(modal);
@@ -29,14 +24,6 @@ export const closeModal = (modal) => {
   modal.removeEventListener('click', handleOverlayClick);
   document.removeEventListener('keydown', handleEscKeyPress);
   modal.querySelector('.popup__close').removeEventListener('click', handleClosePopupClick);
-}
-
-const openPopup = (modal) => {
-  const formElement = modal.querySelector('.popup__form');
-  if (formElement) {
-      formElement.reset();
-      clearValidation(formElement, validationConfig);
-  }
 }
 
 // Функции создания обработчиков

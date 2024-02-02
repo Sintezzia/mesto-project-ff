@@ -46,6 +46,16 @@ const appState = {
     globalUserId: null,
 };
 
+// Универсальная функция открытия попапов с формой
+const openPopupWithForm = (modal) => {
+    openModal(modal);
+    const formElement = modal.querySelector('.popup__form');
+    if (formElement) {
+        formElement.reset();
+        clearValidation(formElement, validationConfig);
+    }
+}
+
 // Функция открытия изображения
 export const openImage = (src, name) => {
     popupImage.src = src;
@@ -164,16 +174,16 @@ const editProfileSubmit = (evt) => {
 // Функция создания слушателей событий
 const setupEventListeners = () => {
   editProfileButton.addEventListener('click', () => {
-    openModal(popupTypeEdit);
+    openPopupWithForm(popupTypeEdit);
 
 
     profileNameInput.value = nameOutputElement.textContent;
     profileJobInput.value = jobOutputElement.textContent;
   });
-  addCardButton.addEventListener('click', () => openModal(popupTypeNewCard));
+  addCardButton.addEventListener('click', () => openPopupWithForm(popupTypeNewCard));
   formNewPlace.addEventListener('submit', addCardSubmit);
   formEditProfile.addEventListener('submit', editProfileSubmit);
-  editAvatarButton.addEventListener('click', () => openModal(popupTypeAvatar));
+  editAvatarButton.addEventListener('click', () => openPopupWithForm(popupTypeAvatar));
   formNewAvatar.addEventListener('submit' , editProfileAvatarSubmit);
   popupErrorButtonSubmit.addEventListener('click', () => closeModal(popupTypeError));
 }
